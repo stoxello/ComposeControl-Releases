@@ -1,0 +1,6 @@
+**/bin/
+**/obj/
+**/wwwroot/lib/
+artifacts/
+docs/**/*.br
+docs/**/*.gz

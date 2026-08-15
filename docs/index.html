@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DockPilot — Docker &amp; Compose management console</title>
-<meta name="description" content="DockPilot is a self-hosted C#/Blazor console for managing Docker: stacks, containers, images, networks, volumes, backups, replication, and remote agents.">
+<title>ComposeControl — Docker &amp; Compose management console</title>
+<meta name="description" content="ComposeControl is a self-hosted C#/Blazor console for managing Docker: stacks, containers, images, networks, volumes, backups, replication, and remote agents.">
 <style>
   :root{
     --bg:#0b0e14;
@@ -267,7 +267,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site">
-  <div class="brand"><span class="mark">D</span> DockPilot</div>
+  <div class="brand"><span class="mark">D</span> ComposeControl</div>
   <nav class="top">
     <a href="#features">Features</a>
     <a href="#quick-start">Quick start</a>
@@ -279,7 +279,7 @@
   </nav>
   <div class="header-actions">
     <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">◐</button>
-    <a class="gh-btn" href="https://github.com/stoxello/DockerPilot" target="_blank" rel="noopener">★ GitHub</a>
+    <a class="gh-btn" href="https://github.com/stoxello/ComposeControl" target="_blank" rel="noopener">★ GitHub</a>
   </div>
 </header>
 
@@ -289,7 +289,7 @@
     <span class="eyebrow">Alpha · self-hosted · open source</span>
     <h1>Manage Docker like a <span>pilot</span>, not a passenger</h1>
     <p class="lead">
-      DockPilot is a C# and Blazor console for Docker and Docker Compose — the approachable stack workflow
+      ComposeControl is a C# and Blazor console for Docker and Docker Compose — the approachable stack workflow
       of Dockge, a built-in app catalog for one-click self-hosting, and progressively deeper environment
       management inspired by Portainer. One container, plain Compose files on disk, no vendor lock-in.
     </p>
@@ -302,7 +302,7 @@
     </div>
     <div class="cta-row">
       <a class="btn btn-primary" href="#quick-start">Quick start →</a>
-      <a class="btn btn-secondary" href="https://github.com/stoxello/DockerPilot" target="_blank" rel="noopener">View source on GitHub</a>
+      <a class="btn btn-secondary" href="https://github.com/stoxello/ComposeControl" target="_blank" rel="noopener">View source on GitHub</a>
     </div>
   </section>
 
@@ -310,11 +310,11 @@
     <div class="section-head">
       <span class="eyebrow">How it works</span>
       <h2>No SDK, no hidden state</h2>
-      <p>DockPilot is an ASP.NET Core / Blazor (Interactive Server) app. Instead of a Docker SDK, it shells
+      <p>ComposeControl is an ASP.NET Core / Blazor (Interactive Server) app. Instead of a Docker SDK, it shells
       out to the <code>docker</code> and <code>docker compose</code> CLIs and parses their JSON output — the
       same thing you'd run by hand. Every stack it creates is written as an ordinary <code>compose.yaml</code>
       (and optional <code>.env</code>) under the stacks directory, so it stays fully inspectable and portable.
-      Managed stacks are sandboxed by name to that directory, and only stacks DockPilot created can be edited
+      Managed stacks are sandboxed by name to that directory, and only stacks ComposeControl created can be edited
       or rewritten from the UI.</p>
     </div>
   </section>
@@ -323,14 +323,14 @@
     <div class="section-head">
       <span class="eyebrow">What it does</span>
       <h2>Features</h2>
-      <p>DockPilot covers the full loop from discovering what's running to deploying, editing, backing up,
+      <p>ComposeControl covers the full loop from discovering what's running to deploying, editing, backing up,
       and replicating it — on your local Docker host or across a fleet of remote agents.</p>
     </div>
 
     <div class="feature-group-title">Workspace</div>
     <div class="grid cols-3">
       <div class="card"><div class="ico">✦</div><h3>App catalog</h3><p>A searchable, built-in catalog of popular self-hosted apps with parameterized Compose previews and one-click deploy into an isolated stack directory.</p></div>
-      <div class="card"><div class="ico">▤</div><h3>Stacks</h3><p>Discovers every Compose project on the host, including DockPilot-managed stacks whose deploy never completed. Create, edit, and redeploy stacks from an in-app editor.</p></div>
+      <div class="card"><div class="ico">▤</div><h3>Stacks</h3><p>Discovers every Compose project on the host, including ComposeControl-managed stacks whose deploy never completed. Create, edit, and redeploy stacks from an in-app editor.</p></div>
       <div class="card"><div class="ico">↻</div><h3>Lifecycle actions</h3><p>Start, stop, restart, pull updates, and remove a stack. Removing a managed stack also deletes its files from disk.</p></div>
     </div>
 
@@ -341,19 +341,19 @@
       <div class="card"><div class="ico">◎</div><h3>Networks</h3><p>List with in-use detection; create and remove custom Docker networks.</p></div>
       <div class="card"><div class="ico">⬡</div><h3>Volumes</h3><p>List with in-use detection; create and remove volumes.</p></div>
       <div class="card"><div class="ico">⌂</div><h3>Volume browser</h3><p>Browse a volume's file tree and edit text files in place — without shelling into a container.</p></div>
-      <div class="card"><div class="ico">≋</div><h3>Events &amp; audit log</h3><p>A live Docker engine event feed alongside a DockPilot audit log of deploys, removals, edits, and sign-ins.</p></div>
+      <div class="card"><div class="ico">≋</div><h3>Events &amp; audit log</h3><p>A live Docker engine event feed alongside a ComposeControl audit log of deploys, removals, edits, and sign-ins.</p></div>
     </div>
 
     <div class="feature-group-title">Resilience</div>
     <div class="grid cols-2">
       <div class="card"><div class="ico">B</div><h3>Backup</h3><p>Scheduled full and incremental backups of a stack's volumes and Compose configuration to the local host, with configurable retention and an option to stop the stack for a consistent snapshot.</p></div>
-      <div class="card"><div class="ico">R</div><h3>Replication</h3><p>Copy a stack to a registered DockPilot agent and keep a cold replica in sync on a schedule, ready for failover, with optional bandwidth capping.</p></div>
+      <div class="card"><div class="ico">R</div><h3>Replication</h3><p>Copy a stack to a registered ComposeControl agent and keep a cold replica in sync on a schedule, ready for failover, with optional bandwidth capping.</p></div>
     </div>
 
     <div class="feature-group-title">Administration</div>
     <div class="grid cols-3">
-      <div class="card"><div class="ico">●</div><h3>Environments / Agents</h3><p>Register remote DockPilot Agent instances and switch the Control Center between Docker hosts from a single top-bar selector.</p></div>
-      <div class="card"><div class="ico">⇪</div><h3>Update checks</h3><p>DockPilot compares its running image digest against the published one and flags the sidebar when a newer version is available.</p></div>
+      <div class="card"><div class="ico">●</div><h3>Environments / Agents</h3><p>Register remote ComposeControl Agent instances and switch the Control Center between Docker hosts from a single top-bar selector.</p></div>
+      <div class="card"><div class="ico">⇪</div><h3>Update checks</h3><p>ComposeControl compares its running image digest against the published one and flags the sidebar when a newer version is available.</p></div>
       <div class="card"><div class="ico">⚿</div><h3>Registry credentials</h3><p>Sign Docker in to a private registry (GHCR, Docker Hub, or custom) on the local host or a specific agent, so private images pull cleanly during installs and updates.</p></div>
       <div class="card"><div class="ico">⚙</div><h3>Authentication</h3><p>ASP.NET Core Identity login with account management and two-factor authentication. A one-time first-run wizard creates the initial administrator; public registration stays disabled.</p></div>
       <div class="card"><div class="ico">▦</div><h3>Engine overview</h3><p>Host name, Docker version, OS, and container / image counts on the dashboard, with graceful handling when the engine is offline.</p></div>
@@ -390,7 +390,7 @@
     <div class="section-head">
       <span class="eyebrow">Install</span>
       <h2>Quick start with Docker</h2>
-      <p>This is the recommended way to run DockPilot. It pulls the published image — no build step required.</p>
+      <p>This is the recommended way to run ComposeControl. It pulls the published image — no build step required.</p>
     </div>
 
     <ol class="steps">
@@ -401,16 +401,16 @@
       <li>
         <h4>Get the Compose file</h4>
         <p>Clone the repo, or create a <code>compose.yaml</code> yourself:</p>
-<pre><code>git clone https://github.com/stoxello/dockpilot.git
-cd dockpilot</code></pre>
+<pre><code>git clone https://github.com/stoxello/ComposeControl.git
+cd ComposeControl</code></pre>
 <pre><code>services:
-  dockpilot:
-    image: ghcr.io/stoxello/dockpilot:latest
+  ComposeControl:
+    image: ghcr.io/stoxello/ComposeControl:latest
     pull_policy: always
-    container_name: dockpilot
+    container_name: ComposeControl
     restart: unless-stopped
     ports:
-      - "${DOCKPILOT_PORT:-8080}:8080"
+      - "${ComposeControl_PORT:-8080}:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/app/data
@@ -420,7 +420,7 @@ cd dockpilot</code></pre>
       <li>
         <h4>Start it</h4>
 <pre><code>docker compose up -d</code></pre>
-        <p>To use a different host port, set <code>DOCKPILOT_PORT</code> (for example in a <code>.env</code> file next to <code>compose.yaml</code>): <code>DOCKPILOT_PORT=9000</code>.</p>
+        <p>To use a different host port, set <code>ComposeControl_PORT</code> (for example in a <code>.env</code> file next to <code>compose.yaml</code>): <code>ComposeControl_PORT=9000</code>.</p>
       </li>
       <li>
         <h4>Sign in</h4>
@@ -430,7 +430,7 @@ cd dockpilot</code></pre>
 
     <div class="callout">
       <h4>Private GHCR package?</h4>
-      <p style="margin:0;color:var(--text-dim);">Run <code>docker login ghcr.io</code> once before <code>docker compose up -d</code>, or add the credential through DockPilot's <a href="#registries">registry credentials</a> page after first sign-in.</p>
+      <p style="margin:0;color:var(--text-dim);">Run <code>docker login ghcr.io</code> once before <code>docker compose up -d</code>, or add the credential through ComposeControl's <a href="#registries">registry credentials</a> page after first sign-in.</p>
     </div>
   </section>
 
@@ -438,7 +438,7 @@ cd dockpilot</code></pre>
     <div class="section-head">
       <span class="eyebrow">Multi-host</span>
       <h2>Remote agents</h2>
-      <p>Install <code>DockPilot.Agent</code> on another Docker host when you want one DockPilot Control Center
+      <p>Install <code>ComposeControl.Agent</code> on another Docker host when you want one ComposeControl Control Center
       to manage multiple engines. The agent is a small, token-protected HTTP API that runs Docker CLI commands
       against the host it's installed on — it never talks back to the Control Center on its own.</p>
     </div>
@@ -449,17 +449,17 @@ cd dockpilot</code></pre>
         <ol class="steps">
           <li>
             <h4>On the remote Docker host</h4>
-<pre><code>curl -O https://raw.githubusercontent.com/stoxello/dockpilot/main/compose.agent.yaml
-printf "DOCKPILOT_AGENT_TOKEN=$(openssl rand -hex 32)\n" &gt; .env
+<pre><code>curl -O https://raw.githubusercontent.com/stoxello/ComposeControl/main/compose.agent.yaml
+printf "ComposeControl_AGENT_TOKEN=$(openssl rand -hex 32)\n" &gt; .env
 docker compose -f compose.agent.yaml up -d</code></pre>
           </li>
           <li>
-            <h4>Register it in DockPilot</h4>
-            <p>Open DockPilot → <strong>Environments</strong> → <em>Connect a Docker host</em>, and add:</p>
+            <h4>Register it in ComposeControl</h4>
+            <p>Open ComposeControl → <strong>Environments</strong> → <em>Connect a Docker host</em>, and add:</p>
             <ul style="color:var(--text-dim);margin:0 0 0 18px;padding:0;">
               <li><strong>Name</strong> — a friendly label for the host</li>
               <li><strong>Endpoint</strong> — <code>http://&lt;remote-host&gt;:5151</code></li>
-              <li><strong>Access token</strong> — the <code>DOCKPILOT_AGENT_TOKEN</code> value from the remote host's <code>.env</code></li>
+              <li><strong>Access token</strong> — the <code>ComposeControl_AGENT_TOKEN</code> value from the remote host's <code>.env</code></li>
             </ul>
           </li>
           <li>
@@ -471,7 +471,7 @@ docker compose -f compose.agent.yaml up -d</code></pre>
       <div>
         <div class="card" style="margin-bottom:16px;">
           <h3 style="margin-top:0;">Stacks created for an agent</h3>
-          <p>Stored under <code>/opt/dockpilot/stacks</code> on that host by default. Set <code>DOCKPILOT_AGENT_STACKS_ROOT</code> in the agent's <code>.env</code> to use a different absolute host path.</p>
+          <p>Stored under <code>/opt/ComposeControl/stacks</code> on that host by default. Set <code>ComposeControl_AGENT_STACKS_ROOT</code> in the agent's <code>.env</code> to use a different absolute host path.</p>
         </div>
         <div class="card">
           <h3 style="margin-top:0;">What the agent exposes</h3>
@@ -493,10 +493,10 @@ docker compose -f compose.agent.yaml up -d</code></pre>
       <span class="ico">⚠</span>
       <div>
         <strong>Troubleshooting a restarting agent</strong>
-        Check that <code>.env</code> sits next to <code>compose.agent.yaml</code> and contains a non-empty <code>DOCKPILOT_AGENT_TOKEN</code> — a missing token makes the agent exit on startup.
+        Check that <code>.env</code> sits next to <code>compose.agent.yaml</code> and contains a non-empty <code>ComposeControl_AGENT_TOKEN</code> — a missing token makes the agent exit on startup.
 <pre style="margin-top:10px;"><code>docker compose -f compose.agent.yaml config
-docker logs --tail 100 dockpilot-agent</code></pre>
-        <p style="margin:10px 0 0;">If logs show <code>exec /usr/bin/dotnet: input/output error</code>, verify host Docker storage: <code>docker run --rm mcr.microsoft.com/dotnet/aspnet:9.0 dotnet --info</code>. If that also fails, run <a href="https://github.com/stoxello/DockerPilot/blob/main/scripts/repair-docker-dotnet-io.sh" target="_blank" rel="noopener"><code>scripts/repair-docker-dotnet-io.sh</code></a> on the Ubuntu host — normally first, and only with <code>--reset-docker-storage</code> if Docker still can't execute the base image.</p>
+docker logs --tail 100 ComposeControl-agent</code></pre>
+        <p style="margin:10px 0 0;">If logs show <code>exec /usr/bin/dotnet: input/output error</code>, verify host Docker storage: <code>docker run --rm mcr.microsoft.com/dotnet/aspnet:9.0 dotnet --info</code>. If that also fails, run <a href="https://github.com/stoxello/ComposeControl/blob/main/scripts/repair-docker-dotnet-io.sh" target="_blank" rel="noopener"><code>scripts/repair-docker-dotnet-io.sh</code></a> on the Ubuntu host — normally first, and only with <code>--reset-docker-storage</code> if Docker still can't execute the base image.</p>
       </div>
     </div>
   </section>
@@ -505,7 +505,7 @@ docker logs --tail 100 dockpilot-agent</code></pre>
     <div class="section-head">
       <span class="eyebrow">Stack resilience</span>
       <h2>Backup &amp; replication</h2>
-      <p>Both features run from a scheduled plan you create once; DockPilot then runs it in the background.</p>
+      <p>Both features run from a scheduled plan you create once; ComposeControl then runs it in the background.</p>
     </div>
 
     <div class="two-col">
@@ -539,21 +539,21 @@ docker logs --tail 100 dockpilot-agent</code></pre>
     <div class="section-head">
       <span class="eyebrow">Reference</span>
       <h2>Configuration</h2>
-      <p>DockPilot is configured through environment variables. The defaults below are what the container image ships with.</p>
+      <p>ComposeControl is configured through environment variables. The defaults below are what the container image ships with.</p>
     </div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Variable</th><th>Default (container)</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>DOCKPILOT_PORT</code></td><td><code>8080</code></td><td>Host port mapped to the container, set in the Compose <code>.env</code></td></tr>
+          <tr><td><code>ComposeControl_PORT</code></td><td><code>8080</code></td><td>Host port mapped to the container, set in the Compose <code>.env</code></td></tr>
           <tr><td><code>ASPNETCORE_URLS</code></td><td><code>http://+:8080</code></td><td>Address the app listens on inside the container</td></tr>
-          <tr><td><code>ConnectionStrings__DefaultConnection</code></td><td><code>DataSource=/app/data/dockpilot.db</code></td><td>SQLite connection string for Identity and app data</td></tr>
-          <tr><td><code>DockPilot__DataPath</code></td><td><code>/app/data</code></td><td>Persistent app state directory</td></tr>
-          <tr><td><code>DockPilot__StacksPath</code></td><td><code>/opt/stacks</code></td><td>Directory where DockPilot writes the Compose stacks it manages</td></tr>
-          <tr><td><code>DockPilot__DataProtectionPath</code></td><td><code>/app/keys</code></td><td>Where ASP.NET Core data-protection keys are persisted</td></tr>
-          <tr><td><code>DockPilot__AgentsPath</code></td><td><code>/app/data/agents.json</code></td><td>Registered remote DockPilot agents</td></tr>
-          <tr><td><code>DockPilot__ReplicationPath</code></td><td><code>/app/data/replication.json</code></td><td>Replication plans and job history</td></tr>
-          <tr><td><code>DockPilot__ReplicaStacksPath</code></td><td><code>/app/data/replicas</code></td><td>Local cold-replica Compose files and volume archives</td></tr>
+          <tr><td><code>ConnectionStrings__DefaultConnection</code></td><td><code>DataSource=/app/data/ComposeControl.db</code></td><td>SQLite connection string for Identity and app data</td></tr>
+          <tr><td><code>ComposeControl__DataPath</code></td><td><code>/app/data</code></td><td>Persistent app state directory</td></tr>
+          <tr><td><code>ComposeControl__StacksPath</code></td><td><code>/opt/stacks</code></td><td>Directory where ComposeControl writes the Compose stacks it manages</td></tr>
+          <tr><td><code>ComposeControl__DataProtectionPath</code></td><td><code>/app/keys</code></td><td>Where ASP.NET Core data-protection keys are persisted</td></tr>
+          <tr><td><code>ComposeControl__AgentsPath</code></td><td><code>/app/data/agents.json</code></td><td>Registered remote ComposeControl agents</td></tr>
+          <tr><td><code>ComposeControl__ReplicationPath</code></td><td><code>/app/data/replication.json</code></td><td>Replication plans and job history</td></tr>
+          <tr><td><code>ComposeControl__ReplicaStacksPath</code></td><td><code>/app/data/replicas</code></td><td>Local cold-replica Compose files and volume archives</td></tr>
         </tbody>
       </table>
     </div>
@@ -565,10 +565,10 @@ docker logs --tail 100 dockpilot-agent</code></pre>
       <table>
         <thead><tr><th>Host path</th><th>Container path</th><th>Purpose</th></tr></thead>
         <tbody>
-          <tr><td><code>/var/run/docker.sock</code></td><td><code>/var/run/docker.sock</code></td><td>Lets DockPilot drive the host Docker engine</td></tr>
+          <tr><td><code>/var/run/docker.sock</code></td><td><code>/var/run/docker.sock</code></td><td>Lets ComposeControl drive the host Docker engine</td></tr>
           <tr><td><code>./data</code></td><td><code>/app/data</code></td><td>SQLite database, registered agents, replication plans, and local replica metadata</td></tr>
           <tr><td><code>./keys</code></td><td><code>/app/keys</code></td><td>Data-protection keys — persisting these keeps logins valid across restarts</td></tr>
-          <tr><td><code>./stacks</code></td><td><code>/opt/stacks</code></td><td>Compose stacks created and managed by DockPilot</td></tr>
+          <tr><td><code>./stacks</code></td><td><code>/opt/stacks</code></td><td>Compose stacks created and managed by ComposeControl</td></tr>
         </tbody>
       </table>
     </div>
@@ -577,7 +577,7 @@ docker logs --tail 100 dockpilot-agent</code></pre>
       <span class="ico">⚿</span>
       <div>
         <strong>Docker socket = host admin</strong>
-        DockPilot mounts <code>/var/run/docker.sock</code>. Access to this socket is equivalent to administrative control of the Docker host. Keep DockPilot behind a reverse proxy that terminates HTTPS, never expose it directly to the public internet, and treat anyone who can reach the UI as a host administrator. Public registration stays disabled — only the first-run administrator can be created without authentication.
+        ComposeControl mounts <code>/var/run/docker.sock</code>. Access to this socket is equivalent to administrative control of the Docker host. Keep ComposeControl behind a reverse proxy that terminates HTTPS, never expose it directly to the public internet, and treat anyone who can reach the UI as a host administrator. Public registration stays disabled — only the first-run administrator can be created without authentication.
       </div>
     </div>
   </section>
@@ -591,11 +591,11 @@ docker logs --tail 100 dockpilot-agent</code></pre>
     <div class="two-col">
       <div>
         <h3 style="margin-top:0;">Update the Control Center</h3>
-        <p>DockPilot's <strong>Updates</strong> page compares its running image digest against the published one and
+        <p>ComposeControl's <strong>Updates</strong> page compares its running image digest against the published one and
         badges the sidebar when a newer version exists. From the directory containing your <code>compose.yaml</code>:</p>
 <pre><code>docker compose pull
 docker compose up -d</code></pre>
-        <p style="color:var(--text-dim);font-size:0.92rem;">DockPilot restarts on the new image. Your data, keys, and stacks are preserved by the mounted volumes. One-click self-update is on the <a href="#roadmap">roadmap</a> — today you run the two commands above yourself.</p>
+        <p style="color:var(--text-dim);font-size:0.92rem;">ComposeControl restarts on the new image. Your data, keys, and stacks are preserved by the mounted volumes. One-click self-update is on the <a href="#roadmap">roadmap</a> — today you run the two commands above yourself.</p>
       </div>
       <div>
         <h3 style="margin-top:0;">Update an agent</h3>
@@ -613,19 +613,19 @@ docker compose -f compose.agent.yaml up -d</code></pre>
 
     <h3>Local development</h3>
     <p style="color:var(--text-dim);">Requires the <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">.NET 9 SDK</a> and a running Docker Desktop or Docker Engine.</p>
-<pre><code>dotnet run --project ./src/DockPilot.Web</code></pre>
+<pre><code>dotnet run --project ./src/ComposeControl.Web</code></pre>
     <p style="color:var(--text-dim);">Open <strong>http://localhost:5146</strong> (or <code>https://localhost:7142</code>), create the initial account, and sign in. Docker must be running for engine data and deployments to work.</p>
 
     <h3>Run the test suite</h3>
 <pre><code>dotnet test</code></pre>
-    <p style="color:var(--text-dim);">The <code>tests/DockPilot.Web.Tests</code> project covers the app catalog, app deployment, stack, setup, resource (image/network/volume), agent registry, backup, replication, registry credential, audit, and update services.</p>
+    <p style="color:var(--text-dim);">The <code>tests/ComposeControl.Web.Tests</code> project covers the app catalog, app deployment, stack, setup, resource (image/network/volume), agent registry, backup, replication, registry credential, audit, and update services.</p>
 
     <h3>Publish the image (maintainers)</h3>
-    <p style="color:var(--text-dim);">The public image is published to GitHub Container Registry as <code>ghcr.io/stoxello/dockpilot</code>, using a GitHub Personal Access Token with the <code>write:packages</code> scope, supplied through an environment variable — never hard-coded or committed.</p>
+    <p style="color:var(--text-dim);">The public image is published to GitHub Container Registry as <code>ghcr.io/stoxello/ComposeControl</code>, using a GitHub Personal Access Token with the <code>write:packages</code> scope, supplied through an environment variable — never hard-coded or committed.</p>
 <pre><code>$env:GHCR_TOKEN = "&lt;github-pat-with-write:packages&gt;"
 .\ghcr-publish.ps1 -Owner stoxello -Version 0.1.0</code></pre>
     <p style="color:var(--text-dim);">The script logs in to <code>ghcr.io</code>, builds from the local <code>Dockerfile</code>, pushes the version tag, and also updates <code>:latest</code> (pass <code>-NoLatestTag</code> to skip that). It logs out afterward so credentials don't linger in your Docker config. The same script publishes the remote agent image:</p>
-<pre><code>.\ghcr-publish.ps1 -Owner stoxello -Image dockpilot-agent -Version 0.1.0</code></pre>
+<pre><code>.\ghcr-publish.ps1 -Owner stoxello -Image ComposeControl-agent -Version 0.1.0</code></pre>
   </section>
 
   <section id="structure" class="anchor-offset">
@@ -633,15 +633,15 @@ docker compose -f compose.agent.yaml up -d</code></pre>
       <span class="eyebrow">Under the hood</span>
       <h2>Project structure</h2>
     </div>
-<pre><code>src/DockPilot.Web        Blazor UI, Identity, app catalog, and Docker services
+<pre><code>src/ComposeControl.Web        Blazor UI, Identity, app catalog, and Docker services
   Components/             Razor pages and layouts (Apps, Stacks, Containers, Account)
   Services/                DockerCliService, StackService, AppDeploymentService, SetupService,
                             BackupService, ReplicationService, AgentRegistry, UpdateService
   Data/                    EF Core DbContext and Identity migrations
-src/DockPilot.Agent       Lightweight token-protected HTTP agent for remote Docker hosts
-tests/DockPilot.Web.Tests xUnit test suite
+src/ComposeControl.Agent       Lightweight token-protected HTTP agent for remote Docker hosts
+tests/ComposeControl.Web.Tests xUnit test suite
 Dockerfile                Multi-stage build (SDK build -&gt; aspnet runtime + docker CLI)
-compose.agent.yaml        Deployment Compose file for a remote DockPilot Agent
+compose.agent.yaml        Deployment Compose file for a remote ComposeControl Agent
 compose.yaml               Deployment Compose file (pulls from GHCR)
 compose.build.yaml        Overlay to build the image from source
 ghcr-publish.ps1           Build and publish images to GitHub Container Registry</code></pre>
@@ -656,7 +656,7 @@ ghcr-publish.ps1           Build and publish images to GitHub Container Registry
       <li>Per-container lifecycle actions (start, stop, restart, remove)</li>
       <li>Remote stack file sync and shell sessions on agent hosts</li>
       <li>Role-based access control for multiple users</li>
-      <li>One-click self-update (today DockPilot detects a new image and notifies you; you run the upgrade)</li>
+      <li>One-click self-update (today ComposeControl detects a new image and notifies you; you run the upgrade)</li>
     </ul>
   </section>
 
@@ -664,11 +664,11 @@ ghcr-publish.ps1           Build and publish images to GitHub Container Registry
 
 <footer>
   <div class="foot-links">
-    <a href="https://github.com/stoxello/DockerPilot" target="_blank" rel="noopener">Repository</a>
-    <a href="https://github.com/stoxello/DockerPilot/issues" target="_blank" rel="noopener">Issues</a>
-    <a href="https://github.com/stoxello/DockerPilot/blob/main/README.md" target="_blank" rel="noopener">README</a>
+    <a href="https://github.com/stoxello/ComposeControl" target="_blank" rel="noopener">Repository</a>
+    <a href="https://github.com/stoxello/ComposeControl/issues" target="_blank" rel="noopener">Issues</a>
+    <a href="https://github.com/stoxello/ComposeControl/blob/main/README.md" target="_blank" rel="noopener">README</a>
   </div>
-  <div>DockPilot is early alpha software. Review the security notes before exposing it beyond a trusted network.</div>
+  <div>ComposeControl is early alpha software. Review the security notes before exposing it beyond a trusted network.</div>
 </footer>
 
 <script>
@@ -676,7 +676,7 @@ ghcr-publish.ps1           Build and publish images to GitHub Container Registry
     var root = document.documentElement;
     var btn = document.getElementById('theme-toggle');
     var stored = null;
-    try { stored = localStorage.getItem('dockpilot-docs-theme'); } catch(e) {}
+    try { stored = localStorage.getItem('ComposeControl-docs-theme'); } catch(e) {}
     if (stored === 'light' || stored === 'dark') root.setAttribute('data-theme', stored);
     btn.addEventListener('click', function(){
       var current = root.getAttribute('data-theme');
@@ -684,7 +684,7 @@ ghcr-publish.ps1           Build and publish images to GitHub Container Registry
       var effective = current || (prefersDark ? 'dark' : 'light');
       var next = effective === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      try { localStorage.setItem('dockpilot-docs-theme', next); } catch(e) {}
+      try { localStorage.setItem('ComposeControl-docs-theme', next); } catch(e) {}
     });
   })();
 </script>

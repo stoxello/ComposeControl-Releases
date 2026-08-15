@@ -59,7 +59,7 @@ This is the recommended way to run ComposeControl.
 
 ```bash
 # Clone the repository (or just grab compose.yaml)
-git clone https://github.com/stoxello/ComposeControl.git
+git clone https://github.com/stoxello/compose-control.git
 cd ComposeControl
 
 docker compose up -d
@@ -74,7 +74,7 @@ The bundled [`compose.yaml`](compose.yaml) pulls the published image `ghcr.io/st
 ```yaml
 services:
   ComposeControl:
-    image: ghcr.io/stoxello/ComposeControl:latest
+    image: ghcr.io/stoxello/compose-control:latest
     pull_policy: always
     container_name: ComposeControl
     restart: unless-stopped

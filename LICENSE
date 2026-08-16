@@ -1,121 +1,150 @@
-Creative Commons Legal Code
+STAXIV COMMERCIAL LICENSE AGREEMENT
+Version 1.0 — Effective August 16, 2026
 
-CC0 1.0 Universal
+Copyright (c) 2026 Stoxello. All rights reserved.
 
-    CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE
-    LEGAL SERVICES. DISTRIBUTION OF THIS DOCUMENT DOES NOT CREATE AN
-    ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS
-    INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES
-    REGARDING THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS
-    PROVIDED HEREUNDER, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM
-    THE USE OF THIS DOCUMENT OR THE INFORMATION OR WORKS PROVIDED
-    HEREUNDER.
+This Staxiv Commercial License Agreement (the "Agreement") governs use of
+Staxiv software, container images, documentation, updates, and related
+materials (collectively, the "Software") provided by Stoxello ("Licensor").
 
-Statement of Purpose
+This Agreement applies to Software versions and materials first distributed
+under this Agreement on or after its effective date. Earlier versions and
+materials remain subject to the license terms under which they were originally
+distributed.
 
-The laws of most jurisdictions throughout the world automatically confer
-exclusive Copyright and Related Rights (defined below) upon the creator
-and subsequent owner(s) (each and all, an "owner") of an original work of
-authorship and/or a database (each, a "Work").
+By installing, accessing, or using the Software, the person or legal entity
+using the Software ("Licensee") agrees to this Agreement. If Licensee does not
+agree to these terms or does not have a valid commercial order, subscription,
+or other written agreement with Licensor authorizing use of the Software (an
+"Order"), Licensee may not install, access, or use the Software.
 
-Certain owners wish to permanently relinquish those rights to a Work for
-the purpose of contributing to a commons of creative, cultural and
-scientific works ("Commons") that the public can reliably and without fear
-of later claims of infringement build upon, modify, incorporate in other
-works, reuse and redistribute as freely as possible in any form whatsoever
-and for any purposes, including without limitation commercial purposes.
-These owners may contribute to the Commons to promote the ideal of a free
-culture and the further production of creative, cultural and scientific
-works, or to gain reputation or greater distribution for their Work in
-part through the use and efforts of others.
+1. COMMERCIAL LICENSE GRANT
 
-For these and/or other purposes and motivations, and without any
-expectation of additional consideration or compensation, the person
-associating CC0 with a Work (the "Affirmer"), to the extent that he or she
-is an owner of Copyright and Related Rights in the Work, voluntarily
-elects to apply CC0 to the Work and publicly distribute the Work under its
-terms, with knowledge of his or her Copyright and Related Rights in the
-Work and the meaning and intended legal effect of CC0 on those rights.
+Subject to Licensee's continued compliance with this Agreement, payment of all
+applicable fees, and the scope and term stated in an Order, Licensor grants
+Licensee a limited, non-exclusive, non-transferable, non-sublicensable license
+to install and use the Software in object-code form solely for Licensee's
+internal business purposes.
 
-1. Copyright and Related Rights. A Work made available under CC0 may be
-protected by copyright and related or neighboring rights ("Copyright and
-Related Rights"). Copyright and Related Rights include, but are not
-limited to, the following:
+The number of users, hosts, instances, environments, and permitted uses is
+limited to the scope stated in the applicable Order. Possession of or access
+to the Software does not by itself grant a license. No rights are granted
+without a valid Order.
 
-  i. the right to reproduce, adapt, distribute, perform, display,
-     communicate, and translate a Work;
- ii. moral rights retained by the original author(s) and/or performer(s);
-iii. publicity and privacy rights pertaining to a person's image or
-     likeness depicted in a Work;
- iv. rights protecting against unfair competition in regards to a Work,
-     subject to the limitations in paragraph 4(a), below;
-  v. rights protecting the extraction, dissemination, use and reuse of data
-     in a Work;
- vi. database rights (such as those arising under Directive 96/9/EC of the
-     European Parliament and of the Council of 11 March 1996 on the legal
-     protection of databases, and under any national implementation
-     thereof, including any amended or successor version of such
-     directive); and
-vii. other similar, equivalent or corresponding rights throughout the
-     world based on applicable law or treaty, and any national
-     implementations thereof.
+2. RESTRICTIONS
 
-2. Waiver. To the greatest extent permitted by, but not in contravention
-of, applicable law, Affirmer hereby overtly, fully, permanently,
-irrevocably and unconditionally waives, abandons, and surrenders all of
-Affirmer's Copyright and Related Rights and associated claims and causes
-of action, whether now known or unknown (including existing as well as
-future claims and causes of action), in the Work (i) in all territories
-worldwide, (ii) for the maximum duration provided by applicable law or
-treaty (including future time extensions), (iii) in any current or future
-medium and for any number of copies, and (iv) for any purpose whatsoever,
-including without limitation commercial, advertising or promotional
-purposes (the "Waiver"). Affirmer makes the Waiver for the benefit of each
-member of the public at large and to the detriment of Affirmer's heirs and
-successors, fully intending that such Waiver shall not be subject to
-revocation, rescission, cancellation, termination, or any other legal or
-equitable action to disrupt the quiet enjoyment of the Work by the public
-as contemplated by Affirmer's express Statement of Purpose.
+Except to the extent expressly authorized in an Order or required by
+applicable law, Licensee may not, and may not permit any third party to:
 
-3. Public License Fallback. Should any part of the Waiver for any reason
-be judged legally invalid or ineffective under applicable law, then the
-Waiver shall be preserved to the maximum extent permitted taking into
-account Affirmer's express Statement of Purpose. In addition, to the
-extent the Waiver is so judged Affirmer hereby grants to each affected
-person a royalty-free, non transferable, non sublicensable, non exclusive,
-irrevocable and unconditional license to exercise Affirmer's Copyright and
-Related Rights in the Work (i) in all territories worldwide, (ii) for the
-maximum duration provided by applicable law or treaty (including future
-time extensions), (iii) in any current or future medium and for any number
-of copies, and (iv) for any purpose whatsoever, including without
-limitation commercial, advertising or promotional purposes (the
-"License"). The License shall be deemed effective as of the date CC0 was
-applied by Affirmer to the Work. Should any part of the License for any
-reason be judged legally invalid or ineffective under applicable law, such
-partial invalidity or ineffectiveness shall not invalidate the remainder
-of the License, and in such case Affirmer hereby affirms that he or she
-will not (i) exercise any of his or her remaining Copyright and Related
-Rights in the Work or (ii) assert any associated claims and causes of
-action with respect to the Work, in either case contrary to Affirmer's
-express Statement of Purpose.
+  a. copy the Software, except for a reasonable number of backup copies;
+  b. modify, adapt, translate, or create derivative works of the Software;
+  c. reverse engineer, decompile, disassemble, decode, or otherwise attempt to
+     derive the Software's source code, algorithms, or non-public interfaces;
+  d. distribute, publish, sell, resell, sublicense, rent, lease, lend, transfer,
+     or otherwise make the Software available to a third party;
+  e. use the Software to provide hosting, managed services, service-bureau,
+     outsourcing, or other services for a third party;
+  f. bypass or interfere with license keys, access controls, usage limits, or
+     other technical protection measures;
+  g. remove, obscure, or alter copyright, trademark, attribution, or other
+     proprietary notices; or
+  h. use the Software in violation of applicable law or the applicable Order.
 
-4. Limitations and Disclaimers.
+3. OWNERSHIP AND RESERVATION OF RIGHTS
 
- a. No trademark or patent rights held by Affirmer are waived, abandoned,
-    surrendered, licensed or otherwise affected by this document.
- b. Affirmer offers the Work as-is and makes no representations or
-    warranties of any kind concerning the Work, express, implied,
-    statutory or otherwise, including without limitation warranties of
-    title, merchantability, fitness for a particular purpose, non
-    infringement, or the absence of latent or other defects, accuracy, or
-    the present or absence of errors, whether or not discoverable, all to
-    the greatest extent permissible under applicable law.
- c. Affirmer disclaims responsibility for clearing rights of other persons
-    that may apply to the Work or any use thereof, including without
-    limitation any person's Copyright and Related Rights in the Work.
-    Further, Affirmer disclaims responsibility for obtaining any necessary
-    consents, permissions or other rights required for any use of the
-    Work.
- d. Affirmer understands and acknowledges that Creative Commons is not a
-    party to this document and has no duty or obligation with respect to
-    this CC0 or use of the Work.
+The Software is licensed, not sold. Licensor and its licensors retain all
+right, title, and interest in and to the Software, including all intellectual
+property rights. Licensee receives only the limited rights expressly granted
+by this Agreement and the applicable Order. All other rights are reserved.
+
+No right to access or receive source code is granted. No trademark rights are
+granted under this Agreement.
+
+4. THIRD-PARTY MATERIALS
+
+The Software may include or interact with third-party software, services, or
+open-source components. Those materials may be governed by separate license
+terms. This Agreement does not restrict rights granted directly under an
+applicable third-party or open-source license.
+
+5. UPDATES, MAINTENANCE, AND SUPPORT
+
+Updates, maintenance, support, service levels, and future functionality are
+provided only if and to the extent stated in an Order. Licensor may modify or
+discontinue the Software, subject to any express commitments in an Order.
+
+6. FEEDBACK
+
+If Licensee provides suggestions, ideas, or other feedback about the Software,
+Licensee grants Licensor a perpetual, irrevocable, worldwide, royalty-free,
+transferable, and sublicensable right to use that feedback for any purpose
+without restriction or compensation.
+
+7. TERM AND TERMINATION
+
+This Agreement begins when Licensee first installs, accesses, or uses the
+Software and continues for the term stated in the applicable Order. Licensor
+may terminate this Agreement if Licensee materially breaches it and does not
+cure the breach within thirty (30) days after written notice. A breach of
+Section 2 may be terminated immediately where the breach cannot reasonably be
+cured.
+
+Upon expiration or termination, Licensee must stop using the Software and
+delete all copies in its possession or control, except copies required to be
+retained by law. Sections that by their nature should survive termination,
+including Sections 2, 3, 6, 8, 9, and 11, will survive.
+
+8. DISCLAIMER OF WARRANTIES
+
+EXCEPT FOR ANY EXPRESS WARRANTY STATED IN AN ORDER, THE SOFTWARE IS PROVIDED
+"AS IS" AND "AS AVAILABLE." TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR
+DISCLAIMS ALL EXPRESS, IMPLIED, STATUTORY, AND OTHER WARRANTIES, INCLUDING
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE,
+NON-INFRINGEMENT, ACCURACY, AND QUIET ENJOYMENT, AND ANY WARRANTIES ARISING
+FROM COURSE OF DEALING OR USAGE OF TRADE.
+
+LICENSOR DOES NOT WARRANT THAT THE SOFTWARE WILL BE UNINTERRUPTED, SECURE,
+ERROR-FREE, OR SUITABLE FOR LICENSEE'S REQUIREMENTS. LICENSEE IS RESPONSIBLE
+FOR BACKUPS, SECURITY, CONFIGURATION, AND SAFE OPERATION OF SYSTEMS MANAGED BY
+THE SOFTWARE.
+
+9. LIMITATION OF LIABILITY
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR WILL NOT BE LIABLE FOR ANY
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES,
+OR FOR ANY LOSS OF PROFITS, REVENUE, BUSINESS, GOODWILL, DATA, OR USE, ARISING
+OUT OF OR RELATED TO THE SOFTWARE OR THIS AGREEMENT, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, LICENSOR'S TOTAL AGGREGATE LIABILITY
+ARISING OUT OF OR RELATED TO THE SOFTWARE OR THIS AGREEMENT WILL NOT EXCEED THE
+AMOUNTS PAID OR PAYABLE BY LICENSEE FOR THE SOFTWARE DURING THE TWELVE (12)
+MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
+
+Nothing in this Agreement excludes or limits liability that cannot lawfully
+be excluded or limited.
+
+10. COMPLIANCE AND EXPORT
+
+Licensee will comply with all laws and regulations applicable to its use of
+the Software, including export-control and sanctions laws. Licensee represents
+that it is not prohibited from receiving the Software under applicable law.
+
+11. GENERAL
+
+Neither party may assign this Agreement without the other party's prior
+written consent, except that Licensor may assign it in connection with a
+merger, acquisition, corporate reorganization, or sale of substantially all
+assets related to the Software.
+
+If any provision is held unenforceable, it will be modified only to the extent
+necessary to make it enforceable, and the remaining provisions will continue
+in effect. A waiver must be in writing and does not waive any later breach.
+
+The applicable Order identifies the governing law and dispute forum. The
+Order, this Agreement, and any documents expressly incorporated by reference
+form the complete agreement concerning the Software. If their terms conflict,
+the Order controls, followed by this Agreement.
+
+Licensing inquiries should be directed to Stoxello through the official
+Staxiv distribution or support channel.

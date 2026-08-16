@@ -92,28 +92,7 @@ ComposeControl_PORT=9000
 
 > If the GHCR package is private, run `docker login ghcr.io` once before `docker compose up -d`.
 
-## Build from source
-
-To build the image locally instead of pulling from GHCR, layer the build overlay over the base Compose file:
-
-```bash
-docker compose -f compose.yaml -f compose.build.yaml up -d --build
-```
-
-This builds from the repository [`Dockerfile`](Dockerfile) (a multi-stage build on the .NET 9 SDK that also copies the
-Docker CLI and Compose plugin into the runtime image).
-
-## Local development
-
-**Prerequisites**
-
-- [.NET 9 SDK](https://dotnet.microsoft.com/download)
-- Docker Desktop or Docker Engine running locally
-
-```bash
-dotnet run --project ./src/ComposeControl.Web
-```
-
+ 
 Open **http://localhost:5146** (or https://localhost:7142), create the initial account, and sign in. Docker must be
 running for engine data and deployments to work.
 

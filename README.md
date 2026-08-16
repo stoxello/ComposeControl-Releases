@@ -58,10 +58,7 @@ This is the recommended way to run ComposeControl.
 **Run it**
 
 ```bash
-# Clone the repository (or just grab compose.yaml)
-git clone https://github.com/stoxello/compose-control.git
-cd ComposeControl
-
+create compose.yaml
 docker compose up -d
 ```
 

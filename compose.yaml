@@ -1,0 +1,13 @@
+services:
+  staxiv:
+    image: ${STAXIV_IMAGE:-ghcr.io/stoxello/staxiv:latest}
+    pull_policy: always
+    container_name: staxiv
+    restart: unless-stopped
+    ports:
+      - "${STAXIV_PORT:-8080}:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/app/data
+      - ./keys:/app/keys
+      - ./stacks:/opt/stacks

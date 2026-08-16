@@ -1,82 +1,83 @@
-# ComposeControl
+# Staxiv
 
-A C# and Blazor management interface for Docker and Docker Compose.
+A self-hosted C# and Blazor management console for Docker and Docker Compose.
 
 ![Status](https://img.shields.io/badge/status-alpha-orange)
 ![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=dotnet&logoColor=white)
 ![Blazor](https://img.shields.io/badge/Blazor-Server-512BD4?logo=blazor&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
 
-ComposeControl aims for the approachable stack workflow of [Dockge](https://github.com/louislam/dockge), a built-in
-application catalog for one-click self-hosting, and progressively deeper environment management inspired by
-[Portainer](https://www.portainer.io/). It runs as a single container, talks to your Docker host through the
-Docker CLI, and stores everything it manages as plain Compose files on disk.
-
-<!-- Add screenshots here, e.g. ![Dashboard](docs/screenshot-dashboard.png) -->
-![Dashboard](img/Screenshot%202026-08-15%20142313.png)
- 
+Staxiv provides an approachable stack workflow, a built-in application catalog
+for one-click self-hosting, and Docker environment management from a single
+container. It talks to the Docker host through the Docker CLI and stores managed
+stacks as ordinary Compose files on disk.
 
 ## Features
 
-This is an early **alpha**. What works today:
+Staxiv is early alpha software. Current features include:
 
-- **Authentication** — ASP.NET Core Identity login, account management, and two-factor authentication
-- **First-run setup** — a one-time wizard creates the initial administrator; public registration is disabled
-- **Engine overview** — Docker host name, version, OS, and container/image counts, with graceful handling when the engine is offline
-- **Containers** — discovery and filtering of all containers on the host
-- **Stacks** — discovery of every Docker Compose project, plus ComposeControl-created stacks
-- **App catalog** — a searchable, built-in catalog of popular self-hosted apps with parameterized Compose previews
-- **One-click deploy** — install a catalog app into its own isolated stack directory
-- **Stack editor** — create a new Compose stack from an in-app editor
-- **Stack detail** — open a stack to view its containers and Compose definition
-- **Lifecycle actions** — start, stop, restart, pull updates, and remove a stack
-- **Edit & redeploy** — change the Compose file of a ComposeControl-managed stack and redeploy it
+- Authentication, account management, and two-factor authentication
+- First-run administrator setup with public registration disabled afterward
+- Docker engine overview and container discovery
+- Compose stack discovery, creation, editing, and lifecycle actions
+- Built-in application catalog with parameterized Compose previews
+- Image, network, and volume management
+- Container logs and terminal access
+- Audit events and Docker engine event monitoring
+- Stack backups and replication
+- Remote Docker hosts through Staxiv Agent
+- Registry credentials and update checks
 
-Container-level actions, logs, terminals, images, networks, volumes, remote environments, roles, audit events, and
-ComposeControl self-update remain on the [roadmap](#roadmap).
+## Quick start
 
-### Built-in app catalog
-
-| App | Category | Description |
-| --- | --- | --- |
-| Jellyfin | Media | Private media server for movies, shows, music, and photos |
-| Immich | Photos | High-performance self-hosted photo and video backup |
-| Uptime Kuma | Monitoring | Friendly monitoring dashboard for services and endpoints |
-| PostgreSQL | Database | Production-grade relational database with persistent storage |
-| Nginx Proxy Manager | Networking | Reverse proxy and TLS certificate management |
-| Home Assistant | Automation | Open-source home automation with local-first control |
-
-## Quick start (Docker)
-
-This is the recommended way to run ComposeControl.
-
-**Prerequisites**
+### Prerequisites
 
 - Docker Engine with the Docker Compose v2 plugin (`docker compose`)
-- On Windows/macOS, Docker Desktop
+- Docker Desktop when running on Windows or macOS
 
-**Run it**
+### Run Staxiv
+
+Clone this release repository and start the bundled Compose configuration:
 
 ```bash
-create compose.yaml
+git clone https://github.com/stoxello/Staxiv-Releases.git
+cd Staxiv-Releases
 docker compose up -d
 ```
 
-Then open **http://localhost:8080**, create the initial administrator account, and sign in.
+Open **http://localhost:8080**, create the initial administrator account, and
+sign in.
 
-The bundled [`compose.yaml`](compose.yaml) pulls the published image `ghcr.io/stoxello/ComposeControl:latest`
-(`pull_policy: always`), so you do not need to build anything. If you prefer not to clone the repo, create a
-`compose.yaml` with the following contents:
+The bundled [`compose.yaml`](compose.yaml) pulls the published image
+`ghcr.io/stoxello/staxiv:latest` with `pull_policy: always`. No source checkout
+or local image build is required.
+
+To use another host port, create a `.env` file beside `compose.yaml`:
+
+```dotenv
+STAXIV_PORT=9000
+```
+
+To pin or override the image, set `STAXIV_IMAGE`:
+
+```dotenv
+STAXIV_IMAGE=ghcr.io/stoxello/staxiv:latest
+```
+
+If the GHCR package is private, run `docker login ghcr.io` before starting the
+container.
+
+## Compose configuration
 
 ```yaml
 services:
-  ComposeControl:
-    image: ghcr.io/stoxello/compose-control:latest
+  staxiv:
+    image: ${STAXIV_IMAGE:-ghcr.io/stoxello/staxiv:latest}
     pull_policy: always
-    container_name: ComposeControl
+    container_name: staxiv
     restart: unless-stopped
     ports:
-      - "${ComposeControl_PORT:-8080}:8080"
+      - "${STAXIV_PORT:-8080}:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/app/data
@@ -84,88 +85,56 @@ services:
       - ./stacks:/opt/stacks
 ```
 
-To use a different host port, set `ComposeControl_PORT` (for example in a `.env` file next to `compose.yaml`):
+## Persistent data
 
-```bash
-ComposeControl_PORT=9000
-```
-
-> If the GHCR package is private, run `docker login ghcr.io` once before `docker compose up -d`.
-
- 
-Open **http://localhost:5146** (or https://localhost:7142), create the initial account, and sign in. Docker must be
-running for engine data and deployments to work.
-
-## Configuration
-
-ComposeControl is configured through environment variables. The defaults below are what the container image ships with.
-
-| Variable | Default (container) | Description |
-| --- | --- | --- |
-| `ComposeControl_PORT` | `8080` | Host port mapped to the container, set in the Compose `.env` |
-| `ASPNETCORE_URLS` | `http://+:8080` | Address the app listens on inside the container |
-| `ConnectionStrings__DefaultConnection` | `DataSource=/app/data/ComposeControl.db` | SQLite connection string for Identity and app data |
-| `ComposeControl__StacksPath` | `/opt/stacks` | Directory where ComposeControl writes the Compose stacks it manages |
-| `ComposeControl__DataProtectionPath` | `/app/keys` | Where ASP.NET Core data-protection keys are persisted |
-
-**Account policy:** passwords must be at least 10 characters. Email confirmation is disabled (no SMTP is configured),
-so accounts are usable immediately after creation.
-
-### Persistent data
-
-The Compose file mounts four volumes. Keep the three writable directories (`./data`, `./keys`, `./stacks`) to preserve
-state across upgrades.
+Keep the three writable directories beside `compose.yaml` to preserve state
+across upgrades.
 
 | Host path | Container path | Purpose |
 | --- | --- | --- |
-| `/var/run/docker.sock` | `/var/run/docker.sock` | Lets ComposeControl drive the host Docker engine |
-| `./data` | `/app/data` | SQLite database (users, settings) |
-| `./keys` | `/app/keys` | Data-protection keys — persisting these keeps logins valid across restarts |
-| `./stacks` | `/opt/stacks` | Compose stacks created and managed by ComposeControl |
+| `/var/run/docker.sock` | `/var/run/docker.sock` | Lets Staxiv manage the host Docker engine |
+| `./data` | `/app/data` | SQLite data, registered agents, replication plans, and local metadata |
+| `./keys` | `/app/keys` | ASP.NET Core data-protection keys |
+| `./stacks` | `/opt/stacks` | Compose stacks created and managed by Staxiv |
+
+## Configuration
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `STAXIV_IMAGE` | `ghcr.io/stoxello/staxiv:latest` | Container image pulled by Compose |
+| `STAXIV_PORT` | `8080` | Host port mapped to the web interface |
+| `ASPNETCORE_URLS` | `http://+:8080` | Address used inside the container |
+| `ConnectionStrings__DefaultConnection` | `DataSource=/app/data/staxiv.db` | SQLite connection string |
+| `Staxiv__DataPath` | `/app/data` | Persistent application state |
+| `Staxiv__StacksPath` | `/opt/stacks` | Managed Compose stack directory |
+| `Staxiv__DataProtectionPath` | `/app/keys` | Persisted data-protection keys |
+
+## Updating
+
+From the directory containing `compose.yaml`:
+
+```bash
+docker compose pull
+docker compose up -d
+```
+
+The mounted data, keys, and stack directories are preserved when the container
+is recreated.
 
 ## Security
 
-> **ComposeControl mounts `/var/run/docker.sock`. Access to this socket is equivalent to administrative control of the
-> Docker host.**
+Staxiv mounts `/var/run/docker.sock`. Access to this socket is equivalent to
+administrative control of the Docker host.
 
-- Keep ComposeControl behind a reverse proxy that terminates HTTPS, and do not expose it directly to the public internet.
-- Public registration is disabled; only the first-run administrator can be created without authentication.
-- Treat anyone who can reach the UI as a host administrator.
+- Keep Staxiv behind a reverse proxy that terminates HTTPS.
+- Do not expose the application directly to the public internet.
+- Treat anyone who can reach the interface as a host administrator.
+- Back up the `data`, `keys`, and `stacks` directories regularly.
 
-## How it works
+## License
 
-ComposeControl is an ASP.NET Core / Blazor (Interactive Server) app. Rather than using a Docker SDK, it shells out to the
-`docker` and `docker compose` CLIs and parses their JSON output, which keeps behavior identical to what you would run
-by hand. Stacks it creates are written as ordinary `compose.yaml` (and `.env`) files under the stacks directory, so they
-remain fully inspectable and portable. Managed stacks are sandboxed by name to that directory, and only stacks ComposeControl
-created can be edited or rewritten from the UI.
+Staxiv is proprietary commercial software. Use requires a valid commercial
+order or written agreement with Stoxello. See [LICENSE](LICENSE) for the terms.
 
-## Project structure
-
-```
-src/ComposeControl.Web        Blazor UI, Identity, app catalog, and Docker services
-  Components/            Razor pages and layouts (Apps, Stacks, Containers, Account)
-  Services/              DockerCliService, StackService, AppDeploymentService, SetupService
-  Data/                  EF Core DbContext and Identity migrations
-tests/ComposeControl.Web.Tests  xUnit test suite
-Dockerfile               Multi-stage build (SDK build -> aspnet runtime + docker CLI)
-compose.yaml             Deployment Compose file (pulls from GHCR)
-compose.build.yaml       Overlay to build the image from source
-ghcr-publish.ps1         Build and publish the image to GitHub Container Registry
-```
-
-At runtime the container also uses:
-
-- `stacks` — Compose projects installed by ComposeControl
-- `data` — SQLite application database
-- `keys` — persisted ASP.NET Core data-protection keys
-
-
-
-## Roadmap
-
-- Container-level actions, logs, and interactive terminals
-- Image, network, and volume management
-- Remote Docker environments
-- Role-based access control and audit events
-- ComposeControl self-update
+Documentation is available at
+[stoxello.github.io/Staxiv-Releases](https://stoxello.github.io/Staxiv-Releases/).

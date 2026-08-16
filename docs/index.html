@@ -79,16 +79,25 @@
     font-size:0.9em;
   }
   pre{
+    position:relative;
     background:var(--code-bg);
     color:#d7e0f0;
     border:1px solid var(--border);
     border-radius:10px;
-    padding:16px 18px;
+    padding:46px 18px 16px;
     overflow-x:auto;
     font-size:0.88rem;
     max-width:100%;
   }
-  pre code{background:none;border:none;padding:0;}
+  pre code{display:block;background:none;border:none;padding:0;}
+  .copy-btn{
+    position:absolute;top:8px;right:8px;
+    border:1px solid #34405a;background:#172033;color:#d7e0f0;
+    border-radius:7px;padding:5px 10px;cursor:pointer;
+    font:600 0.75rem -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .copy-btn:hover,.copy-btn:focus-visible{border-color:var(--accent);color:#fff;outline:none;}
+  .copy-btn.copied{border-color:var(--accent-2);color:var(--accent-2);}
 
   .skip-link{position:absolute;left:-999px;top:0;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;z-index:100;}
   .skip-link:focus{left:12px;top:12px;}
@@ -268,7 +277,7 @@
     <a href="#resilience">Backup &amp; replication</a>
     <a href="#configuration">Configuration</a>
     <a href="#updating">Updating</a>
-    <a href="#deploying">Deploying</a>
+    <a href="#deploying">Packages</a>
   </nav>
   <div class="header-actions">
     <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">◐</button>
@@ -278,7 +287,7 @@
 <main id="main">
 
   <section class="hero" style="border-top:none;">
-    <span class="eyebrow">Alpha · self-hosted · open source</span>
+    <span class="eyebrow">Alpha · self-hosted · closed source</span>
     <h1>Manage Docker like a <span>pilot</span>, not a passenger</h1>
     <p class="lead">
       ComposeControl is a C# and Blazor console for Docker and Docker Compose — the approachable stack workflow
@@ -294,7 +303,7 @@
     </div>
     <div class="cta-row">
       <a class="btn btn-primary" href="#quick-start">Quick start →</a>
-      <a class="btn btn-secondary" href="https://github.com/stoxello/ComposeControl" target="_blank" rel="noopener">View source on GitHub</a>
+      <a class="btn btn-secondary" href="https://github.com/users/stoxello/packages/container/package/compose-control" target="_blank" rel="noopener">View container package</a>
     </div>
   </section>
 
@@ -346,7 +355,7 @@
     <div class="grid cols-3">
       <div class="card"><div class="ico">●</div><h3>Environments / Agents</h3><p>Register remote ComposeControl Agent instances and switch the Control Center between Docker hosts from a single top-bar selector.</p></div>
       <div class="card"><div class="ico">⇪</div><h3>Update checks</h3><p>ComposeControl compares its running image digest against the published one and flags the sidebar when a newer version is available.</p></div>
-      <div class="card"><div class="ico">⚿</div><h3>Registry credentials</h3><p>Sign Docker in to a private registry (GHCR, Docker Hub, or custom) on the local host or a specific agent, so private images pull cleanly during installs and updates.</p></div>
+      <div class="card"><div class="ico">⚿</div><h3>Registry credentials</h3><p>The ComposeControl packages pull from GHCR. The Registries page can also sign Docker in to private registries used by your own stacks.</p></div>
       <div class="card"><div class="ico">⚙</div><h3>Authentication</h3><p>ASP.NET Core Identity login with account management and two-factor authentication. A one-time first-run wizard creates the initial administrator; public registration stays disabled.</p></div>
       <div class="card"><div class="ico">▦</div><h3>Engine overview</h3><p>Host name, Docker version, OS, and container / image counts on the dashboard, with graceful handling when the engine is offline.</p></div>
     </div>
@@ -391,18 +400,16 @@
         <p>Docker Engine with the Compose v2 plugin (<code>docker compose</code>). On Windows/macOS, Docker Desktop covers this.</p>
       </li>
       <li>
-        <h4>Get the Compose file</h4>
-        <p>Clone the repo, or create a <code>compose.yaml</code> yourself:</p>
-<pre><code>git clone https://github.com/stoxello/ComposeControl.git
-cd ComposeControl</code></pre>
+        <h4>Create the Compose file</h4>
+        <p>The source repository is private. Create a new directory and save the following as <code>compose.yaml</code>:</p>
 <pre><code>services:
-  ComposeControl:
-    image: ghcr.io/stoxello/ComposeControl:latest
+  compose-control:
+    image: ghcr.io/stoxello/compose-control:latest
     pull_policy: always
-    container_name: ComposeControl
+    container_name: compose-control
     restart: unless-stopped
     ports:
-      - "${ComposeControl_PORT:-8080}:8080"
+      - "${COMPOSE_CONTROL_PORT:-8080}:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./data:/app/data
@@ -412,7 +419,7 @@ cd ComposeControl</code></pre>
       <li>
         <h4>Start it</h4>
 <pre><code>docker compose up -d</code></pre>
-        <p>To use a different host port, set <code>ComposeControl_PORT</code> (for example in a <code>.env</code> file next to <code>compose.yaml</code>): <code>ComposeControl_PORT=9000</code>.</p>
+        <p>To use a different host port, set <code>COMPOSE_CONTROL_PORT</code> in a <code>.env</code> file next to <code>compose.yaml</code>, for example: <code>COMPOSE_CONTROL_PORT=9000</code>.</p>
       </li>
       <li>
         <h4>Sign in</h4>
@@ -421,8 +428,8 @@ cd ComposeControl</code></pre>
     </ol>
 
     <div class="callout">
-      <h4>Private GHCR package?</h4>
-      <p style="margin:0;color:var(--text-dim);">Run <code>docker login ghcr.io</code> once before <code>docker compose up -d</code>, or add the credential through ComposeControl's <a href="#registries">registry credentials</a> page after first sign-in.</p>
+      <h4>Install from the published package</h4>
+      <p style="margin:0;color:var(--text-dim);">No repository clone or source checkout is required. Docker pulls <code>ghcr.io/stoxello/compose-control:latest</code> from the public <a href="https://github.com/users/stoxello/packages/container/package/compose-control" target="_blank" rel="noopener">compose-control package</a>.</p>
     </div>
   </section>
 
@@ -430,7 +437,7 @@ cd ComposeControl</code></pre>
     <div class="section-head">
       <span class="eyebrow">Multi-host</span>
       <h2>Remote agents</h2>
-      <p>Install <code>ComposeControl.Agent</code> on another Docker host when you want one ComposeControl Control Center
+      <p>Install <code>ComposeControl.Agent</code> on another Docker host when you want one ComposeControl instance
       to manage multiple engines. The agent is a small, token-protected HTTP API that runs Docker CLI commands
       against the host it's installed on — it never talks back to the Control Center on its own.</p>
     </div>
@@ -441,8 +448,36 @@ cd ComposeControl</code></pre>
         <ol class="steps">
           <li>
             <h4>On the remote Docker host</h4>
-<pre><code>curl -O https://raw.githubusercontent.com/stoxello/ComposeControl/main/compose.agent.yaml
-printf "ComposeControl_AGENT_TOKEN=$(openssl rand -hex 32)\n" &gt; .env
+            <p>Create a directory, generate a strong access token, and save it in <code>.env</code>:</p>
+<pre><code>mkdir compose-control-agent &amp;&amp; cd compose-control-agent
+printf "COMPOSE_CONTROL_AGENT_TOKEN=$(openssl rand -hex 32)\n" &gt; .env</code></pre>
+            <p>Save the following as <code>compose.agent.yaml</code> in the same directory:</p>
+<pre><code>services:
+  compose-control-agent:
+    image: ghcr.io/stoxello/compose-control-agent:latest
+    pull_policy: always
+    container_name: compose-control-agent
+    restart: unless-stopped
+    ports:
+      - "${COMPOSE_CONTROL_AGENT_PORT:-5151}:5151"
+    environment:
+      COMPOSE_CONTROL_AGENT_TOKEN: ${COMPOSE_CONTROL_AGENT_TOKEN:?Set a strong token}
+      COMPOSE_CONTROL_AGENT_REPLICA_ROOT: /opt/compose-control/replicas
+      COMPOSE_CONTROL_AGENT_STACKS_ROOT: ${COMPOSE_CONTROL_AGENT_STACKS_ROOT:-/opt/compose-control/stacks}
+      ASPNETCORE_URLS: http://+:5151
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:5151/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./agent-replicas:/opt/compose-control/replicas
+      - ${COMPOSE_CONTROL_AGENT_STACKS_ROOT:-/opt/compose-control/stacks}:${COMPOSE_CONTROL_AGENT_STACKS_ROOT:-/opt/compose-control/stacks}
+      - ./agent-docker-config:/root/.docker</code></pre>
+            <p>Pull and start the published agent package:</p>
+<pre><code>docker compose -f compose.agent.yaml pull
 docker compose -f compose.agent.yaml up -d</code></pre>
           </li>
           <li>
@@ -451,7 +486,7 @@ docker compose -f compose.agent.yaml up -d</code></pre>
             <ul style="color:var(--text-dim);margin:0 0 0 18px;padding:0;">
               <li><strong>Name</strong> — a friendly label for the host</li>
               <li><strong>Endpoint</strong> — <code>http://&lt;remote-host&gt;:5151</code></li>
-              <li><strong>Access token</strong> — the <code>ComposeControl_AGENT_TOKEN</code> value from the remote host's <code>.env</code></li>
+              <li><strong>Access token</strong> — the <code>COMPOSE_CONTROL_AGENT_TOKEN</code> value from the remote host's <code>.env</code></li>
             </ul>
           </li>
           <li>
@@ -463,7 +498,7 @@ docker compose -f compose.agent.yaml up -d</code></pre>
       <div>
         <div class="card" style="margin-bottom:16px;">
           <h3 style="margin-top:0;">Stacks created for an agent</h3>
-          <p>Stored under <code>/opt/ComposeControl/stacks</code> on that host by default. Set <code>ComposeControl_AGENT_STACKS_ROOT</code> in the agent's <code>.env</code> to use a different absolute host path.</p>
+          <p>Stored under <code>/opt/compose-control/stacks</code> on that host by default. Set <code>COMPOSE_CONTROL_AGENT_STACKS_ROOT</code> in the agent's <code>.env</code> to use a different absolute host path.</p>
         </div>
         <div class="card">
           <h3 style="margin-top:0;">What the agent exposes</h3>
@@ -485,10 +520,10 @@ docker compose -f compose.agent.yaml up -d</code></pre>
       <span class="ico">⚠</span>
       <div>
         <strong>Troubleshooting a restarting agent</strong>
-        Check that <code>.env</code> sits next to <code>compose.agent.yaml</code> and contains a non-empty <code>ComposeControl_AGENT_TOKEN</code> — a missing token makes the agent exit on startup.
+        Check that <code>.env</code> sits next to <code>compose.agent.yaml</code> and contains a non-empty <code>COMPOSE_CONTROL_AGENT_TOKEN</code> — a missing token makes the agent exit on startup.
 <pre style="margin-top:10px;"><code>docker compose -f compose.agent.yaml config
-docker logs --tail 100 ComposeControl-agent</code></pre>
-        <p style="margin:10px 0 0;">If logs show <code>exec /usr/bin/dotnet: input/output error</code>, verify host Docker storage: <code>docker run --rm mcr.microsoft.com/dotnet/aspnet:9.0 dotnet --info</code>. If that also fails, run <a href="https://github.com/stoxello/ComposeControl/blob/main/scripts/repair-docker-dotnet-io.sh" target="_blank" rel="noopener"><code>scripts/repair-docker-dotnet-io.sh</code></a> on the Ubuntu host — normally first, and only with <code>--reset-docker-storage</code> if Docker still can't execute the base image.</p>
+docker logs --tail 100 compose-control-agent</code></pre>
+        <p style="margin:10px 0 0;">If logs show <code>exec /usr/bin/dotnet: input/output error</code>, verify the host's Docker storage with <code>docker run --rm mcr.microsoft.com/dotnet/aspnet:9.0 dotnet --info</code>. If the base image also fails, repair the Docker host's storage before restarting the agent.</p>
       </div>
     </div>
   </section>
@@ -537,9 +572,9 @@ docker logs --tail 100 ComposeControl-agent</code></pre>
       <table>
         <thead><tr><th>Variable</th><th>Default (container)</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>ComposeControl_PORT</code></td><td><code>8080</code></td><td>Host port mapped to the container, set in the Compose <code>.env</code></td></tr>
+          <tr><td><code>COMPOSE_CONTROL_PORT</code></td><td><code>8080</code></td><td>Host port mapped to the container, set in the Compose <code>.env</code></td></tr>
           <tr><td><code>ASPNETCORE_URLS</code></td><td><code>http://+:8080</code></td><td>Address the app listens on inside the container</td></tr>
-          <tr><td><code>ConnectionStrings__DefaultConnection</code></td><td><code>DataSource=/app/data/ComposeControl.db</code></td><td>SQLite connection string for Identity and app data</td></tr>
+          <tr><td><code>ConnectionStrings__DefaultConnection</code></td><td><code>DataSource=/app/data/compose-control.db</code></td><td>SQLite connection string for Identity and app data</td></tr>
           <tr><td><code>ComposeControl__DataPath</code></td><td><code>/app/data</code></td><td>Persistent app state directory</td></tr>
           <tr><td><code>ComposeControl__StacksPath</code></td><td><code>/opt/stacks</code></td><td>Directory where ComposeControl writes the Compose stacks it manages</td></tr>
           <tr><td><code>ComposeControl__DataProtectionPath</code></td><td><code>/app/keys</code></td><td>Where ASP.NET Core data-protection keys are persisted</td></tr>
@@ -598,45 +633,22 @@ docker compose -f compose.agent.yaml up -d</code></pre>
       </div>
     </div>
 
-    <h3 id="deploying">Build the Control Center from source</h3>
-    <p>To build the image locally instead of pulling from GHCR, layer the build overlay over the base Compose file:</p>
-<pre><code>docker compose -f compose.yaml -f compose.build.yaml up -d --build</code></pre>
-    <p style="color:var(--text-dim);">This builds from the repository <code>Dockerfile</code> — a multi-stage build on the .NET 9 SDK that also copies the Docker CLI and Compose plugin into the runtime image.</p>
-
-    <h3>Local development</h3>
-    <p style="color:var(--text-dim);">Requires the <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">.NET 9 SDK</a> and a running Docker Desktop or Docker Engine.</p>
-<pre><code>dotnet run --project ./src/ComposeControl.Web</code></pre>
-    <p style="color:var(--text-dim);">Open <strong>http://localhost:5146</strong> (or <code>https://localhost:7142</code>), create the initial account, and sign in. Docker must be running for engine data and deployments to work.</p>
-
-    <h3>Run the test suite</h3>
-<pre><code>dotnet test</code></pre>
-    <p style="color:var(--text-dim);">The <code>tests/ComposeControl.Web.Tests</code> project covers the app catalog, app deployment, stack, setup, resource (image/network/volume), agent registry, backup, replication, registry credential, audit, and update services.</p>
-
-    <h3>Publish the image (maintainers)</h3>
-    <p style="color:var(--text-dim);">The public image is published to GitHub Container Registry as <code>ghcr.io/stoxello/ComposeControl</code>, using a GitHub Personal Access Token with the <code>write:packages</code> scope, supplied through an environment variable — never hard-coded or committed.</p>
-<pre><code>$env:GHCR_TOKEN = "&lt;github-pat-with-write:packages&gt;"
-.\ghcr-publish.ps1 -Owner stoxello -Version 0.1.0</code></pre>
-    <p style="color:var(--text-dim);">The script logs in to <code>ghcr.io</code>, builds from the local <code>Dockerfile</code>, pushes the version tag, and also updates <code>:latest</code> (pass <code>-NoLatestTag</code> to skip that). It logs out afterward so credentials don't linger in your Docker config. The same script publishes the remote agent image:</p>
-<pre><code>.\ghcr-publish.ps1 -Owner stoxello -Image ComposeControl-agent -Version 0.1.0</code></pre>
-  </section>
-
-  <section id="structure" class="anchor-offset">
-    <div class="section-head">
-      <span class="eyebrow">Under the hood</span>
-      <h2>Project structure</h2>
+    <h3 id="deploying">Installable packages</h3>
+    <p>ComposeControl is closed-source software distributed as public container packages. Installation and updates use these images only; the application source repository is not publicly accessible.</p>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3 style="margin-top:0;">Control Center</h3>
+        <p><code>ghcr.io/stoxello/compose-control:latest</code></p>
+<pre><code>docker pull ghcr.io/stoxello/compose-control:latest</code></pre>
+        <p><a href="https://github.com/users/stoxello/packages/container/package/compose-control" target="_blank" rel="noopener">View the compose-control package →</a></p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;">Remote agent</h3>
+        <p><code>ghcr.io/stoxello/compose-control-agent:latest</code></p>
+<pre><code>docker pull ghcr.io/stoxello/compose-control-agent:latest</code></pre>
+        <p><a href="https://github.com/users/stoxello/packages/container/package/compose-control-agent" target="_blank" rel="noopener">View the compose-control-agent package →</a></p>
+      </div>
     </div>
-<pre><code>src/ComposeControl.Web        Blazor UI, Identity, app catalog, and Docker services
-  Components/             Razor pages and layouts (Apps, Stacks, Containers, Account)
-  Services/                DockerCliService, StackService, AppDeploymentService, SetupService,
-                            BackupService, ReplicationService, AgentRegistry, UpdateService
-  Data/                    EF Core DbContext and Identity migrations
-src/ComposeControl.Agent       Lightweight token-protected HTTP agent for remote Docker hosts
-tests/ComposeControl.Web.Tests xUnit test suite
-Dockerfile                Multi-stage build (SDK build -&gt; aspnet runtime + docker CLI)
-compose.agent.yaml        Deployment Compose file for a remote ComposeControl Agent
-compose.yaml               Deployment Compose file (pulls from GHCR)
-compose.build.yaml        Overlay to build the image from source
-ghcr-publish.ps1           Build and publish images to GitHub Container Registry</code></pre>
   </section>
 
   <section id="roadmap" class="anchor-offset">
@@ -656,11 +668,10 @@ ghcr-publish.ps1           Build and publish images to GitHub Container Registry
 
 <footer>
   <div class="foot-links">
-    <a href="https://github.com/stoxello/ComposeControl" target="_blank" rel="noopener">Repository</a>
-    <a href="https://github.com/stoxello/ComposeControl/issues" target="_blank" rel="noopener">Issues</a>
-    <a href="https://github.com/stoxello/ComposeControl/blob/main/README.md" target="_blank" rel="noopener">README</a>
+    <a href="https://github.com/users/stoxello/packages/container/package/compose-control" target="_blank" rel="noopener">Control Center package</a>
+    <a href="https://github.com/users/stoxello/packages/container/package/compose-control-agent" target="_blank" rel="noopener">Agent package</a>
   </div>
-  <div>ComposeControl is early alpha software. Review the security notes before exposing it beyond a trusted network.</div>
+  <div>ComposeControl is closed-source, early alpha software distributed as container packages. Review the security notes before exposing it beyond a trusted network.</div>
 </footer>
 
 <script>
@@ -677,6 +688,50 @@ ghcr-publish.ps1           Build and publish images to GitHub Container Registry
       var next = effective === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('ComposeControl-docs-theme', next); } catch(e) {}
+    });
+
+    function fallbackCopy(text){
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.opacity = '0';
+      document.body.appendChild(area);
+      area.select();
+      var copied = document.execCommand('copy');
+      document.body.removeChild(area);
+      return copied;
+    }
+
+    document.querySelectorAll('pre').forEach(function(pre, index){
+      var code = pre.querySelector('code');
+      if (!code) return;
+      var copy = document.createElement('button');
+      copy.type = 'button';
+      copy.className = 'copy-btn';
+      copy.textContent = 'Copy';
+      copy.setAttribute('aria-label', 'Copy code block ' + (index + 1));
+      copy.addEventListener('click', async function(){
+        var text = code.innerText;
+        var copied = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+            copied = true;
+          } else {
+            copied = fallbackCopy(text);
+          }
+        } catch(e) {
+          copied = fallbackCopy(text);
+        }
+        copy.textContent = copied ? 'Copied!' : 'Copy failed';
+        copy.classList.toggle('copied', copied);
+        window.setTimeout(function(){
+          copy.textContent = 'Copy';
+          copy.classList.remove('copied');
+        }, 1600);
+      });
+      pre.appendChild(copy);
     });
   })();
 </script>
